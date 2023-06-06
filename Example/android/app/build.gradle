@@ -29,7 +29,7 @@ react {
     //   The list of variants to that are debuggable. For those we're going to
     //   skip the bundling of the JS bundle and the assets. By default is just 'debug'.
     //   If you add flavors like lite, prod, etc. you'll have to list your debuggableVariants.
-    // debuggableVariants = ["liteDebug", "prodDebug"]
+    debuggableVariants = ["uatDebug", "prodDebug"]
 
     /* Bundling */
     //   A list containing the node command and its flags. Default is just 'node'.
@@ -103,6 +103,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     namespace "com.swmansion.reanimated.example"
+    flavorDimensions "default"
     defaultConfig {
         applicationId "com.swmansion.reanimated.example"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -137,6 +138,17 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+        }
+    }
+
+    productFlavors {
+        uat {
+            minSdkVersion rootProject.ext.minSdkVersion
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            applicationIdSuffix ".uat"
+        }
+        prod {
+
         }
     }
 
